@@ -60,6 +60,22 @@
         </ul>
 
         <!-- 4. เขียนประโยค -->
+		<!-- Card 1 - add id to the writing lines wrapper -->
+<div id="demoWriting">
+  <div class="writing-line">...</div>
+  <div class="writing-line">...</div>
+  <div class="writing-line">...</div>
+</div>
+
+<!-- Card 2 -->
+<div id="prepWriting">...</div>
+
+<!-- Card 3 -->
+<div id="impWriting">...</div>
+
+<!-- Card 4 -->
+<div id="modalWriting">...</div>
+		
         <div class="section-tag">&#9997;&#65039; เขียนประโยคภาษาอังกฤษ</div>
         <div class="writing-line"><label>1. นี่คือโทรศัพท์ของฉัน</label><input type="text" class="writing-input" data-writing-answer="This is my phone." placeholder="เขียนประโยค"></div>
         <div class="writing-line"><label>2. เหล่านั้นคือรถยนต์ของพวกเขา</label><input type="text" class="writing-input" data-writing-answer="Those are their cars." placeholder="เขียนประโยค"></div>
@@ -350,19 +366,7 @@
     }
 
     // Imperatives
-    function checkImpAll() {
-        let fill = document.querySelectorAll('#impFill .answer-input');
-        let struct = document.querySelectorAll('#impStruct .answer-input');
-        let mc = document.querySelectorAll('#impMC .question-item');
-        let writing = document.querySelectorAll('.exercise-card:nth-of-type(3) .writing-input');
-        alert(`&#9989; Imperatives\nเติมคำ: ${checkSection(fill,'answer')}/10\nโครงสร้าง: ${checkSection(struct,'answer')}/5\nเลือกตอบ: ${checkMultipleChoice(mc)}/3\nเขียนประโยค: ${checkWriting(writing)}/3`);
-    }
-    function clearImpAll() {
-        clearSection(document.querySelectorAll('#impFill .answer-input'));
-        clearSection(document.querySelectorAll('#impStruct .answer-input'));
-        clearMultipleChoice(document.querySelectorAll('#impMC .question-item'));
-        clearWriting(document.querySelectorAll('.exercise-card:nth-of-type(3) .writing-input'));
-    }
+
 
     // Can/Could/May
     function checkModalAll() {
@@ -382,6 +386,50 @@
     function toggleAnswer(id) {
         document.getElementById(id).classList.toggle('show');
     }
+
+function checkPrepAll() {
+    let fill = document.querySelectorAll('#prepFill .answer-input');
+    let struct = document.querySelectorAll('#prepStruct .answer-input');
+    let mc = document.querySelectorAll('#prepMC .question-item');
+    let writing = document.querySelectorAll('#prepWriting .writing-input');
+    alert(`✅ Prepositions\nเติมคำ: ${checkSection(fill,'answer')}/10\nโครงสร้าง: ${checkSection(struct,'answer')}/5\nเลือกตอบ: ${checkMultipleChoice(mc)}/3\nเขียนประโยค: ${checkWriting(writing)}/3`);
+}
+function clearPrepAll() {
+    clearSection(document.querySelectorAll('#prepFill .answer-input'));
+    clearSection(document.querySelectorAll('#prepStruct .answer-input'));
+    clearMultipleChoice(document.querySelectorAll('#prepMC .question-item'));
+    clearWriting(document.querySelectorAll('#prepWriting .writing-input'));
+}
+
+function checkImpAll() {
+    let fill = document.querySelectorAll('#impFill .answer-input');
+    let struct = document.querySelectorAll('#impStruct .answer-input');
+    let mc = document.querySelectorAll('#impMC .question-item');
+    let writing = document.querySelectorAll('#impWriting .writing-input');
+    alert(`✅ Imperatives\nเติมคำ: ${checkSection(fill,'answer')}/10\nโครงสร้าง: ${checkSection(struct,'answer')}/5\nเลือกตอบ: ${checkMultipleChoice(mc)}/3\nเขียนประโยค: ${checkWriting(writing)}/3`);
+}
+function clearImpAll() {
+    clearSection(document.querySelectorAll('#impFill .answer-input'));
+    clearSection(document.querySelectorAll('#impStruct .answer-input'));
+    clearMultipleChoice(document.querySelectorAll('#impMC .question-item'));
+    clearWriting(document.querySelectorAll('#impWriting .writing-input'));
+}
+
+function checkModalAll() {
+    let fill = document.querySelectorAll('#modalFill .answer-input');
+    let struct = document.querySelectorAll('#modalStruct .answer-input');
+    let mc = document.querySelectorAll('#modalMC .question-item');
+    let writing = document.querySelectorAll('#modalWriting .writing-input');
+    alert(`✅ Can/Could/May\nเติมคำ: ${checkSection(fill,'answer')}/10\nโครงสร้าง: ${checkSection(struct,'answer')}/5\nเลือกตอบ: ${checkMultipleChoice(mc)}/3\nเขียนประโยค: ${checkWriting(writing)}/3`);
+}
+function clearModalAll() {
+    clearSection(document.querySelectorAll('#modalFill .answer-input'));
+    clearSection(document.querySelectorAll('#modalStruct .answer-input'));
+    clearMultipleChoice(document.querySelectorAll('#modalMC .question-item'));
+    clearWriting(document.querySelectorAll('#modalWriting .writing-input'));
+}
+
+	
 </script>
 <div id="bottomnav"></div>
 <script src="nav.js"></script>
