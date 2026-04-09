@@ -21,10 +21,10 @@
     <!-- ========================== หัวข้อ 1: Demonstratives ========================== -->
     <div class="exercise-card">
         <div class="exercise-title">&#128269; หัวข้อที่ 1: Demonstratives (this
-			<img border="0" src="icon_this.png" width="103" height="45">, that
-			<img border="0" src="icon_that.png" width="136" height="40">, these
-			<img border="0" src="icon_these.png" width="92" height="37">, those
-			<img border="0" src="icon_those.png" width="108" height="37">)</div>
+			<img border="0" src="images/icon_this.png" width="103" height="45">, that
+			<img border="0" src="images/icon_that.png" width="136" height="40">, these
+			<img border="0" src="images/icon_these.png" width="92" height="37">, those
+			<img border="0" src="images/icon_those.png" width="108" height="37">)</div>
 
         <!-- 1. เติมคำในช่องว่าง -->
         <div class="section-tag">&#9999;&#65039; เติมคำในช่องว่าง (this, that, these, those)</div>
@@ -274,21 +274,21 @@
     }
 
     function checkWriting(writingInputs) {
-        let correct = 0;
-        writingInputs.forEach(input => {
-            let user = input.value.trim().toLowerCase().replace(/[^a-z0-9\s]/g, '');
-            let correctAns = input.dataset.writingAnswer.toLowerCase().replace(/[^a-z0-9\s]/g, '');
-            if (user === correctAns) {
-                correct++;
-                input.style.borderColor = '#48bb78';
-                input.style.backgroundColor = '#f0fff4';
-            } else {
-                input.style.borderColor = '#f56565';
-                input.style.backgroundColor = '#fff5f5';
-            }
-        });
-        return correct;
-    }
+    let correct = 0;
+    writingInputs.forEach(input => {
+        let user = input.value.trim().toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ');
+        let correctAns = input.dataset.writingAnswer.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ');
+        if (user === correctAns) {
+            correct++;
+            input.style.borderColor = '#48bb78';
+            input.style.backgroundColor = '#f0fff4';
+        } else {
+            input.style.borderColor = '#f56565';
+            input.style.backgroundColor = '#fff5f5';
+        }
+    });
+    return correct;
+}
 
     function clearWriting(writingInputs) {
         writingInputs.forEach(input => {
@@ -317,16 +317,16 @@
 
     // Demonstratives
     function checkDemoAll() {
-        let fill = document.querySelectorAll('#demoFill .answer-input');
-        let struct = document.querySelectorAll('#demoStruct .answer-input');
-        let mc = document.querySelectorAll('#demoMC .question-item');
-        let writing = document.querySelectorAll('#answerDemo + div .writing-input, .exercise-card:first-of-type .writing-input');
-        let scoreFill = checkSection(fill, 'answer');
-        let scoreStruct = checkSection(struct, 'answer');
-        let scoreMC = checkMultipleChoice(mc);
-        let scoreWrite = checkWriting(document.querySelectorAll('.exercise-card:first-of-type .writing-input'));
-        alert(`&#9989; Demonstratives\nเติมคำ: ${scoreFill}/10\nโครงสร้าง: ${scoreStruct}/5\nเลือกตอบ: ${scoreMC}/3\nเขียนประโยค: ${scoreWrite}/3`);
-    }
+    let fill = document.querySelectorAll('#demoFill .answer-input');
+    let struct = document.querySelectorAll('#demoStruct .answer-input');
+    let mc = document.querySelectorAll('#demoMC .question-item');
+    let writing = document.querySelectorAll('.exercise-card:first-child .writing-input'); // ← fixed selector
+    let scoreFill = checkSection(fill, 'answer');
+    let scoreStruct = checkSection(struct, 'answer');
+    let scoreMC = checkMultipleChoice(mc);
+    let scoreWrite = checkWriting(writing);
+    alert(`✅ Demonstratives\nเติมคำ: ${scoreFill}/10\nโครงสร้าง: ${scoreStruct}/5\nเลือกตอบ: ${scoreMC}/3\nเขียนประโยค: ${scoreWrite}/3`);
+}
     function clearDemoAll() {
         clearSection(document.querySelectorAll('#demoFill .answer-input'));
         clearSection(document.querySelectorAll('#demoStruct .answer-input'));
