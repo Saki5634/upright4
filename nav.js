@@ -42,11 +42,15 @@ let topnav = `
 // 🔻 BOTTOM NAV (all except current + next)
 let bottomLinks = pages.filter((p, i) => i !== index);
 
+// 🔻 BOTTOM NAV (all except current)
+let bottomLinks = pages.filter((p, i) => i !== index);
+
 let bottomnav = `
 <div class="bottomnav">
   ${bottomLinks.map(p => `<a href="${p.file}">${p.title}</a>`).join(" | ")}
 </div>
 `;
+
 
 // Render into placeholders
 document.addEventListener("DOMContentLoaded", function(){
