@@ -1,0 +1,38 @@
+/* =========================
+   LESSON NAVIGATION BAR
+========================= */
+
+.topnav {
+  background:#0044cc;       /* deep blue bar */
+  color:#fff;               /* white text */
+  padding:10px;
+  text-align:center;
+  margin-bottom:15px;
+  border-radius:6px;
+  font-size:12pt;
+}
+
+.topnav a {
+  color:#ffcc00;            /* gold links */
+  font-weight:500;
+}
+
+.topnav a:hover {
+  color:#ffffff;            /* white hover */
+  background:#0066ff;       /* lighter blue hover */
+  border-radius:4px;
+}
+
+.topnav .current {
+  font-weight:bold;
+  color:#ffffff;            /* white highlight for current lesson */
+}
+
+.bottomnav {
+  font-size:10pt;
+  color:#666;
+  text-align:center;
+  margin-top:20px;
+  padding:10px;
+  border-top:1px solid #ddd;
+}

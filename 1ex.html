@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+<link rel="stylesheet" href="style.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฝึกหัดภาษาอังกฤษ - Countable/Uncountable Nouns</title>
+    
+</head>
+<body>
+<div id="topnav"></div>
+<div class="container">
+    <div class="header">
+        <h1>&#128218; Grammar Exercise</h1>
+        <p>Countable / Uncountable Nouns</p>
+        <div class="badge">เหมาะสำหรับนักเรียนไทย</div>
+    </div>
+
+    <!-- แบบฝึกหัดที่ 1: เติมคำในช่องว่าง -->
+    <div class="exercise-card">
+        <div class="exercise-title">
+            <span class="exercise-icon">&#9999;&#65039;</span> แบบฝึกหัดที่ 1: เติมคำในช่องว่าง
+        </div>
+        <div style="margin-bottom: 15px; color: #718096;">เติม <strong>C (Countable)</strong> หรือ <strong>U (Uncountable)</strong></div>
+        <ul class="question-list" id="fillBlankList">
+            <li class="question-item">
+                <div class="question-text">1. Water _____</div>
+                <input type="text" class="answer-input" data-answer="U" placeholder="พิมพ์ C หรือ U">
+            </li>
+            <li class="question-item">
+                <div class="question-text">2. Apple _____</div>
+                <input type="text" class="answer-input" data-answer="C" placeholder="พิมพ์ C หรือ U">
+            </li>
+            <li class="question-item">
+                <div class="question-text">3. Rice _____</div>
+                <input type="text" class="answer-input" data-answer="U" placeholder="พิมพ์ C หรือ U">
+            </li>
+            <li class="question-item">
+                <div class="question-text">4. Chair _____</div>
+                <input type="text" class="answer-input" data-answer="C" placeholder="พิมพ์ C หรือ U">
+            </li>
+            <li class="question-item">
+                <div class="question-text">5. Sugar _____</div>
+                <input type="text" class="answer-input" data-answer="U" placeholder="พิมพ์ C หรือ U">
+            </li>
+            <li class="question-item">
+                <div class="question-text">6. Dog _____</div>
+                <input type="text" class="answer-input" data-answer="C" placeholder="พิมพ์ C หรือ U">
+            </li>
+            <li class="question-item">
+                <div class="question-text">7. Information _____</div>
+                <input type="text" class="answer-input" data-answer="U" placeholder="พิมพ์ C หรือ U">
+            </li>
+            <li class="question-item">
+                <div class="question-text">8. Book _____</div>
+                <input type="text" class="answer-input" data-answer="C" placeholder="พิมพ์ C หรือ U">
+            </li>
+            <li class="question-item">
+                <div class="question-text">9. Milk _____</div>
+                <input type="text" class="answer-input" data-answer="U" placeholder="พิมพ์ C หรือ U">
+            </li>
+            <li class="question-item">
+                <div class="question-text">10. Person _____</div>
+                <input type="text" class="answer-input" data-answer="C" placeholder="พิมพ์ C หรือ U">
+            </li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="checkFillBlanks()">&#9989; ตรวจคำตอบ</button>
+            <button class="btn btn-secondary" onclick="clearFillBlanks()">&#128465;&#65039; ล้างคำตอบ</button>
+            <button class="btn btn-answer" onclick="toggleAnswer('answerFill')">&#128269; แสดง/ซ่อน เฉลย</button>
+        </div>
+        <div id="answerFill" class="answer-box">
+            <h4>&#128204; เฉลย แบบฝึกหัดที่ 1</h4>
+            <ul class="answer-list">
+                <li>1. U (Water)</li><li>2. C (Apple)</li><li>3. U (Rice)</li><li>4. C (Chair)</li>
+                <li>5. U (Sugar)</li><li>6. C (Dog)</li><li>7. U (Information)</li><li>8. C (Book)</li>
+                <li>9. U (Milk)</li><li>10. C (Person)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- แบบฝึกหัดที่ 2: ถามโครงสร้าง -->
+    <div class="exercise-card">
+        <div class="exercise-title">
+            <span class="exercise-icon">&#10067;</span> แบบฝึกหัดที่ 2: ถามโครงสร้าง
+        </div>
+        <ul class="question-list" id="structureList">
+            <li class="question-item">
+                <div class="question-text">1. คำนามนับได้รูปพหูพจน์ปกติเติมอะไร?</div>
+                <input type="text" class="answer-input" data-answer="เติม -s หรือ -es" placeholder="พิมพ์คำตอบ">
+            </li>
+            <li class="question-item">
+                <div class="question-text">2. คำนามนับไม่ได้มีรูปพหูพจน์หรือไม่?</div>
+                <input type="text" class="answer-input" data-answer="ไม่มี" placeholder="พิมพ์คำตอบ">
+            </li>
+            <li class="question-item">
+                <div class="question-text">3. ยกตัวอย่างคำนามนับได้ 2 คำ</div>
+                <input type="text" class="answer-input" data-answer="เช่น cat, table" placeholder="พิมพ์คำตอบ">
+            </li>
+            <li class="question-item">
+                <div class="question-text">4. ยกตัวอย่างคำนามนับไม่ได้ 2 คำ</div>
+                <input type="text" class="answer-input" data-answer="เช่น water, sugar" placeholder="พิมพ์คำตอบ">
+            </li>
+            <li class="question-item">
+                <div class="question-text">5. ใช้ a/an กับคำนามประเภทใด?</div>
+                <input type="text" class="answer-input" data-answer="คำนามนับได้เอกพจน์" placeholder="พิมพ์คำตอบ">
+            </li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="checkStructure()">&#9989; ตรวจคำตอบ</button>
+            <button class="btn btn-secondary" onclick="clearStructure()">&#128465;&#65039; ล้างคำตอบ</button>
+            <button class="btn btn-answer" onclick="toggleAnswer('answerStructure')">&#128269; แสดง/ซ่อน เฉลย</button>
+        </div>
+        <div id="answerStructure" class="answer-box">
+            <h4>&#128204; เฉลย แบบฝึกหัดที่ 2</h4>
+            <ul class="answer-list">
+                <li>1. เติม -s หรือ -es</li>
+                <li>2. ไม่มีรูปพหูพจน์</li>
+                <li>3. (ตัวอย่าง) cat, table</li>
+                <li>4. (ตัวอย่าง) water, sugar</li>
+                <li>5. คำนามนับได้เอกพจน์</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- แบบฝึกหัดที่ 3: เลือกตอบ -->
+    <div class="exercise-card">
+        <div class="exercise-title">
+            <span class="exercise-icon">&#128280;</span> แบบฝึกหัดที่ 3: เลือกตอบ
+        </div>
+        <ul class="question-list" id="mcList">
+            <li class="question-item">
+                <div class="question-text">1. Which word is <strong>countable</strong>?</div>
+                <div class="choice-group">
+                    <label class="choice-label"><input type="radio" name="mc1" value="ก"> ก. Milk</label>
+                    <label class="choice-label"><input type="radio" name="mc1" value="ข"> ข. Rice</label>
+                    <label class="choice-label"><input type="radio" name="mc1" value="ค"> ค. Chair</label>
+                    <label class="choice-label"><input type="radio" name="mc1" value="ง"> ง. Sugar</label>
+                </div>
+                <div class="choice-correct" style="display:none;" data-correct="ค"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">2. Which word is <strong>uncountable</strong>?</div>
+                <div class="choice-group">
+                    <label class="choice-label"><input type="radio" name="mc2" value="ก"> ก. Apple</label>
+                    <label class="choice-label"><input type="radio" name="mc2" value="ข"> ข. Information</label>
+                    <label class="choice-label"><input type="radio" name="mc2" value="ค"> ค. Table</label>
+                    <label class="choice-label"><input type="radio" name="mc2" value="ง"> ง. Car</label>
+                </div>
+                <div class="choice-correct" style="display:none;" data-correct="ข"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">3. “I need ____ advice.”</div>
+                <div class="choice-group">
+                    <label class="choice-label"><input type="radio" name="mc3" value="ก"> ก. a</label>
+                    <label class="choice-label"><input type="radio" name="mc3" value="ข"> ข. an</label>
+                    <label class="choice-label"><input type="radio" name="mc3" value="ค"> ค. some</label>
+                    <label class="choice-label"><input type="radio" name="mc3" value="ง"> ง. many</label>
+                </div>
+                <div class="choice-correct" style="display:none;" data-correct="ค"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">4. “She has ____ friends.”</div>
+                <div class="choice-group">
+                    <label class="choice-label"><input type="radio" name="mc4" value="ก"> ก. much</label>
+                    <label class="choice-label"><input type="radio" name="mc4" value="ข"> ข. a little</label>
+                    <label class="choice-label"><input type="radio" name="mc4" value="ค"> ค. many</label>
+                    <label class="choice-label"><input type="radio" name="mc4" value="ง"> ง. a piece of</label>
+                </div>
+                <div class="choice-correct" style="display:none;" data-correct="ค"></div>
+            </li>
+            <li class="question-item">
+                <div class="question-text">5. “____ water is on the floor.”</div>
+                <div class="choice-group">
+                    <label class="choice-label"><input type="radio" name="mc5" value="ก"> ก. A</label>
+                    <label class="choice-label"><input type="radio" name="mc5" value="ข"> ข. An</label>
+                    <label class="choice-label"><input type="radio" name="mc5" value="ค"> ค. Some</label>
+                    <label class="choice-label"><input type="radio" name="mc5" value="ง"> ง. Many</label>
+                </div>
+                <div class="choice-correct" style="display:none;" data-correct="ค"></div>
+            </li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="checkMultipleChoice()">&#9989; ตรวจคำตอบ</button>
+            <button class="btn btn-secondary" onclick="clearMultipleChoice()">&#128465;&#65039; เคลียร์ตัวเลือก</button>
+            <button class="btn btn-answer" onclick="toggleAnswer('answerMC')">&#128269; แสดง/ซ่อน เฉลย</button>
+        </div>
+        <div id="answerMC" class="answer-box">
+            <h4>&#128204; เฉลย แบบฝึกหัดที่ 3</h4>
+            <ul class="answer-list">
+                <li>1. ค (Chair)</li><li>2. ข (Information)</li><li>3. ค (some)</li>
+                <li>4. ค (many)</li><li>5. ค (Some)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- แบบฝึกหัดที่ 4: เขียนประโยคจากภาษาไทย -->
+    <div class="exercise-card">
+        <div class="exercise-title">
+            <span class="exercise-icon">&#9997;&#65039;</span> แบบฝึกหัดที่ 4: เขียนประโยคภาษาอังกฤษ
+        </div>
+        <div class="writing-line">
+            <label>1. ฉันมีน้ำหนึ่งแก้ว</label>
+            <input type="text" class="writing-input" data-writing-answer="I have a glass of water." placeholder="พิมพ์ประโยคภาษาอังกฤษ">
+        </div>
+        <div class="writing-line">
+            <label>2. เขาซื้อข้าวสารสองถุง</label>
+            <input type="text" class="writing-input" data-writing-answer="He buys two bags of rice." placeholder="พิมพ์ประโยคภาษาอังกฤษ">
+        </div>
+        <div class="writing-line">
+            <label>3. นมไม่เหลือแล้ว</label>
+            <input type="text" class="writing-input" data-writing-answer="There is no milk left." placeholder="พิมพ์ประโยคภาษาอังกฤษ">
+        </div>
+        <div class="writing-line">
+            <label>4. ฉันเห็นแอปเปิ้ลสามผล</label>
+            <input type="text" class="writing-input" data-writing-answer="I see three apples." placeholder="พิมพ์ประโยคภาษาอังกฤษ">
+        </div>
+        <div class="writing-line">
+            <label>5. คุณต้องการความช่วยเหลือไหม</label>
+            <input type="text" class="writing-input" data-writing-answer="Do you need any help?" placeholder="พิมพ์ประโยคภาษาอังกฤษ">
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="checkWriting()">&#9989; ตรวจคำตอบ</button>
+            <button class="btn btn-secondary" onclick="clearWriting()">&#128465;&#65039; ล้างคำตอบ</button>
+            <button class="btn btn-answer" onclick="toggleAnswer('answerWriting')">&#128269; แสดง/ซ่อน เฉลย</button>
+        </div>
+        <div id="answerWriting" class="answer-box">
+            <h4>&#128204; ตัวอย่างคำตอบที่ถูกต้อง</h4>
+            <ul class="answer-list">
+                <li>1. I have a glass of water.</li>
+                <li>2. He buys two bags of rice.</li>
+                <li>3. There is no milk left. / There isn’t any milk left.</li>
+                <li>4. I see three apples.</li>
+                <li>5. Do you need any help?</li>
+            </ul>
+            <p style="margin-top:10px;font-size:0.9em;">&#9989; ระบบจะเปรียบเทียบคำตอบโดยประมาณ (ตัวพิมพ์เล็ก/ใหญ่, เว้นวรรค)</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkFillBlanks() {
+        const inputs = document.querySelectorAll('#fillBlankList .answer-input');
+        let score = 0;
+        inputs.forEach(input => {
+            const userAnswer = input.value.trim().toUpperCase();
+            const correct = input.dataset.answer;
+            if (userAnswer === correct) {
+                score++;
+                input.style.borderColor = '#48bb78';
+                input.style.backgroundColor = '#f0fff4';
+            } else {
+                input.style.borderColor = '#f56565';
+                input.style.backgroundColor = '#fff5f5';
+            }
+        });
+        alert(`คุณตอบถูก ${score} จาก ${inputs.length} ข้อ`);
+    }
+
+    function clearFillBlanks() {
+        document.querySelectorAll('#fillBlankList .answer-input').forEach(input => {
+            input.value = '';
+            input.style.borderColor = '#e2e8f0';
+            input.style.backgroundColor = 'white';
+        });
+    }
+
+    function checkStructure() {
+        const inputs = document.querySelectorAll('#structureList .answer-input');
+        let feedback = [];
+        inputs.forEach((input, idx) => {
+            const user = input.value.trim().toLowerCase();
+            const correct = input.dataset.answer.toLowerCase();
+            if (user.includes(correct) || correct.includes(user) || (idx === 2 && user.includes('cat')) || (idx === 3 && user.includes('water'))) {
+                input.style.borderColor = '#48bb78';
+                input.style.backgroundColor = '#f0fff4';
+                feedback.push(`ข้อ ${idx+1}: ถูกต้อง`);
+            } else {
+                input.style.borderColor = '#f56565';
+                input.style.backgroundColor = '#fff5f5';
+                feedback.push(`ข้อ ${idx+1}: คำตอบที่ถูกต้องคือ "${input.dataset.answer}"`);
+            }
+        });
+        alert(feedback.join('\n'));
+    }
+
+    function clearStructure() {
+        document.querySelectorAll('#structureList .answer-input').forEach(input => {
+            input.value = '';
+            input.style.borderColor = '#e2e8f0';
+            input.style.backgroundColor = 'white';
+        });
+    }
+
+    function checkMultipleChoice() {
+        let correctCount = 0;
+        const questions = document.querySelectorAll('#mcList .question-item');
+        questions.forEach((q, idx) => {
+            const selected = q.querySelector('input[type="radio"]:checked');
+            const correctValue = q.querySelector('.choice-correct').dataset.correct;
+            if (selected && selected.value === correctValue) {
+                correctCount++;
+                selected.parentElement.style.color = '#48bb78';
+            } else if (selected) {
+                selected.parentElement.style.color = '#f56565';
+            }
+        });
+        alert(`คุณเลือกถูก ${correctCount} จาก ${questions.length} ข้อ`);
+    }
+
+    function clearMultipleChoice() {
+        document.querySelectorAll('#mcList input[type="radio"]').forEach(radio => {
+            radio.checked = false;
+            radio.parentElement.style.color = '';
+        });
+    }
+
+    function checkWriting() {
+        const inputs = document.querySelectorAll('.writing-input');
+        let correct = 0;
+        inputs.forEach(input => {
+            const user = input.value.trim().toLowerCase().replace(/[^a-z0-9\s]/g, '');
+            const correctAns = input.dataset.writingAnswer.toLowerCase().replace(/[^a-z0-9\s]/g, '');
+            if (user === correctAns || (input.dataset.writingAnswer.includes('any') && user.includes('any'))) {
+                input.style.borderColor = '#48bb78';
+                input.style.backgroundColor = '#f0fff4';
+                correct++;
+            } else {
+                input.style.borderColor = '#f56565';
+                input.style.backgroundColor = '#fff5f5';
+            }
+        });
+        alert(`คุณเขียนถูก ${correct} จาก ${inputs.length} ประโยค (ระบบตัดเครื่องหมายวรรคตอน)`);
+    }
+
+    function clearWriting() {
+        document.querySelectorAll('.writing-input').forEach(input => {
+            input.value = '';
+            input.style.borderColor = '#e2e8f0';
+            input.style.backgroundColor = '#f7fafc';
+        });
+    }
+
+    function toggleAnswer(answerId) {
+        const box = document.getElementById(answerId);
+        box.classList.toggle('show');
+    }
+</script>
+<div id="bottomnav"></div>
+<script src="nav.js"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,699 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+<link rel="stylesheet" href="style.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบฝึกหัดไวยากรณ์ภาษาอังกฤษ</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div id="topnav"></div>
+
+<header class="site-header">
+  <h1>&#128218; แบบฝึกหัดไวยากรณ์ภาษาอังกฤษ</h1>
+  <p>ระดับ A2–B1 &middot; มีเฉลยและระบบนับคะแนนอัตโนมัติ</p>
+</header>
+
+<!-- Score Dashboard -->
+<div class="score-dashboard">
+  <div class="score-inner">
+    <span class="score-label">ความคืบหน้า:</span>
+    <div class="score-chips" id="scoreChips"></div>
+    <span class="total-score" id="totalScore">รวม: 0 คะแนน</span>
+    <button class="reset-btn" onclick="resetAll()">&#8634; เริ่มใหม่</button>
+  </div>
+</div>
+
+<!-- Navigation -->
+<div class="nav-wrap">
+  <div class="nav-tabs" id="navTabs"></div>
+</div>
+
+<main class="main" id="mainContent"></main>
+
+<script>
+/* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+   DATA
+&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+const topics = [
+  {
+    id: 't0',
+    title: 'Countable/Uncountable',
+    subtitle: 'Quantifiers &middot; There is/There are',
+    parts: [
+      {
+        type: 'fill',
+        title: 'เติมคำในช่องว่าง — เลือก a / an / some / any / much / many / a lot of / a few / a little / no',
+        questions: [
+          { q: 'There is ___ water in the bottle. <span style="color:var(--text-muted);font-size:.85rem">(นับไม่ได้ — มีบ้าง)</span>', a: ['some'] },
+          { q: 'Do you have ___ eggs? <span style="color:var(--text-muted);font-size:.85rem">(คำถาม)</span>', a: ['any'] },
+          { q: 'She drinks ___ coffee every morning. <span style="color:var(--text-muted);font-size:.85rem">(มาก, นับไม่ได้)</span>', a: ['a lot of','lots of','much'] },
+          { q: 'There are ___ students in the class today. <span style="color:var(--text-muted);font-size:.85rem">(มากมาย)</span>', a: ['a lot of','lots of','many'] },
+          { q: 'I need ___ apple for the recipe.', a: ['an'] },
+          { q: 'He has ___ money left. <span style="color:var(--text-muted);font-size:.85rem">(ไม่มีเลย)</span>', a: ['no'] },
+          { q: 'Can I have ___ milk, please? <span style="color:var(--text-muted);font-size:.85rem">(บ้างหน่อย)</span>', a: ['some'] },
+          { q: 'How ___ sugar do you want?', a: ['much'] },
+          { q: 'There are ___ chairs in the room. <span style="color:var(--text-muted);font-size:.85rem">(สองสามตัว)</span>', a: ['a few'] },
+          { q: 'We don\'t have ___ bread.', a: ['any'] },
+        ],
+        answers: [
+          'some — water นับไม่ได้, ประโยคบอกเล่า ใช้ some',
+          'any — ประโยคคำถาม ใช้ any',
+          'a lot of — coffee นับไม่ได้, ปริมาณมาก',
+          'a lot of / many — students นับได้, ปริมาณมาก',
+          'an — apple นับได้, ขึ้นต้นด้วยเสียงสระ',
+          'no — ไม่มีเลย (= doesn\'t have any)',
+          'some — ประโยคขอร้อง/เสนอ ใช้ some',
+          'much — How much + นับไม่ได้',
+          'a few — chairs นับได้, จำนวนน้อย',
+          'any — ประโยคปฏิเสธ ใช้ any',
+        ]
+      },
+      {
+        type: 'struct',
+        title: 'ถามโครงสร้าง — เขียนคำตอบในช่องว่าง',
+        questions: [
+          'Countable noun คืออะไร? ยกตัวอย่าง 3 คำ',
+          'Uncountable noun คืออะไร? ยกตัวอย่าง 3 คำ',
+          'There is / There are ต่างกันอย่างไร?',
+        ],
+        answers: [
+          'นับได้ (มี plural): book&#8594;books, chair&#8594;chairs, apple&#8594;apples',
+          'นับไม่ได้ (ไม่มี plural): water, sugar, music, information, rice',
+          'There is + singular/uncountable | There are + plural: There is a cat. / There are two cats.',
+        ]
+      },
+      {
+        type: 'mc',
+        title: 'แบบเลือกตอบ',
+        questions: [
+          { q: '"rice" เป็น noun ประเภทใด?', opts: ['Countable','Uncountable'], a: 1 },
+          { q: '___ sugar do you need? (ปริมาณ)', opts: ['How many','How much'], a: 1 },
+          { q: 'There ___ three books on the table.', opts: ['is','are'], a: 1 },
+          { q: 'I want ___ orange juice.', opts: ['a','some','many'], a: 1 },
+          { q: 'She doesn\'t have ___ friends here.', opts: ['some','any'], a: 1 },
+          { q: '___ milk is left in the fridge.', opts: ['A little','A few'], a: 0 },
+          { q: 'I have ___ questions to ask.', opts: ['a few','a little'], a: 0 },
+          { q: '___ students passed the exam.', opts: ['Much','Many','A little'], a: 1 },
+          { q: 'ประโยคใดถูกต้อง?', opts: ['There is many chairs.','There are some chairs.'], a: 1 },
+          { q: 'Would you like ___ tea?', opts: ['any','some'], a: 1 },
+        ]
+      }
+    ]
+  },
+  {
+    id: 't1',
+    title: 'Demonstratives',
+    subtitle: 'Prepositions &middot; Imperatives &middot; Can/Could/May',
+    parts: [
+      {
+        type: 'fill',
+        title: 'เติมคำในช่องว่าง — Demonstratives / Prepositions / Imperatives / Can/Could/May',
+        questions: [
+          { q: '___ is my pen. <span style="color:var(--text-muted);font-size:.85rem">(ของใกล้, 1 ด้าม)</span>', a: ['this','This'] },
+          { q: '___ shoes are old. <span style="color:var(--text-muted);font-size:.85rem">(ของไกล, หลายคู่)</span>', a: ['those','Those'] },
+          { q: 'The cat is ___ the box. <span style="color:var(--text-muted);font-size:.85rem">(ข้างใน)</span>', a: ['in','inside'] },
+          { q: 'The bank is ___ the school. <span style="color:var(--text-muted);font-size:.85rem">(ตรงข้าม)</span>', a: ['opposite','across from'] },
+          { q: '___ the door, please. <span style="color:var(--text-muted);font-size:.85rem">(สั่ง — ปิด)</span>', a: ['close','Close','shut','Shut'] },
+          { q: '___ run in the hall! <span style="color:var(--text-muted);font-size:.85rem">(ห้าม)</span>', a: ["don't","Don't"] },
+          { q: '___ I use your phone? <span style="color:var(--text-muted);font-size:.85rem">(ขอร้องสุภาพ)</span>', a: ['may','May','could','Could'] },
+          { q: '___ you help me? <span style="color:var(--text-muted);font-size:.85rem">(ขอร้อง)</span>', a: ['can','Can','could','Could'] },
+          { q: 'She ___ swim very well. <span style="color:var(--text-muted);font-size:.85rem">(ความสามารถ)</span>', a: ['can'] },
+          { q: '___ are the books on the top shelf. <span style="color:var(--text-muted);font-size:.85rem">(ของไกล, หลายเล่ม)</span>', a: ['those','Those'] },
+        ],
+        answers: [
+          'This — ใกล้ + เอกพจน์',
+          'Those — ไกล + พหูพจน์',
+          'in / inside — อยู่ภายใน',
+          'opposite / across from — ตรงข้าม',
+          'Close — Imperative ใช้ V1 ขึ้นต้น',
+          "Don't — Don't + V1 = ห้าม",
+          'May / Could — ขออนุญาต สุภาพ',
+          'Can / Could — ขอร้อง',
+          'can — แสดงความสามารถ',
+          'Those — ไกล + พหูพจน์',
+        ]
+      },
+      {
+        type: 'struct',
+        title: 'ถามโครงสร้าง — เขียนคำตอบในช่องว่าง',
+        questions: [
+          'This / These / That / Those ใช้ต่างกันอย่างไร? (ใกล้/ไกล, เอกพจน์/พหูพจน์)',
+          'Imperative sentence สร้างอย่างไร? และ "Don\'t" ใช้เมื่อใด?',
+          'Can / Could / May ต่างกันอย่างไรเมื่อใช้ขออนุญาต?',
+        ],
+        answers: [
+          'This=ใกล้+เอก | These=ใกล้+พหู | That=ไกล+เอก | Those=ไกล+พหู',
+          "ใช้ V1 ขึ้นต้น (Open the door.) / Don't + V1 = ห้าม (Don't talk.)",
+          'Can=ทั่วไป | Could=สุภาพกว่า | May=เป็นทางการ/สุภาพที่สุด',
+        ]
+      },
+      {
+        type: 'mc',
+        title: 'แบบเลือกตอบ',
+        questions: [
+          { q: '___ are my friends over there.', opts: ['This','Those','These'], a: 1 },
+          { q: 'The dog is ___ the sofa. (บนโซฟา)', opts: ['in','on','at'], a: 1 },
+          { q: 'I go to school ___ 7 a.m.', opts: ['in','on','at'], a: 2 },
+          { q: '___ be late for class!', opts: ['No','Don\'t','Not'], a: 1 },
+          { q: '___ I sit here? (สุภาพ)', opts: ['Can','May'], a: 1 },
+          { q: '___ book is interesting. (เล่มใกล้ๆ)', opts: ['That','This','Those'], a: 1 },
+          { q: 'My birthday is ___ July.', opts: ['at','in','on'], a: 1 },
+          { q: '___ quiet in the library.', opts: ['Be','Is','Are'], a: 0 },
+          { q: 'He ___ speak three languages.', opts: ['could','can','may'], a: 1 },
+          { q: '___ flowers are beautiful. (ดอกไม้ตรงหน้าหลายดอก)', opts: ['Those','These','That'], a: 1 },
+        ]
+      }
+    ]
+  },
+  {
+    id: 't2',
+    title: 'Comparatives/Superlatives',
+    subtitle: 'Enough &middot; Too',
+    parts: [
+      {
+        type: 'fill',
+        title: 'เติมคำในช่องว่าง — Comparatives / Superlatives / Enough / Too',
+        questions: [
+          { q: 'Bangkok is ___ than Chiang Mai. <span style="color:var(--text-muted);font-size:.85rem">(hot)</span>', a: ['hotter'] },
+          { q: 'She is the ___ student in class. <span style="color:var(--text-muted);font-size:.85rem">(smart)</span>', a: ['smartest'] },
+          { q: 'This box is ___ heavy for me to carry. <span style="color:var(--text-muted);font-size:.85rem">(เกินไป)</span>', a: ['too'] },
+          { q: 'He is tall ___ to reach the shelf. <span style="color:var(--text-muted);font-size:.85rem">(พอที่จะ)</span>', a: ['enough'] },
+          { q: 'Mount Everest is the ___ mountain in the world. <span style="color:var(--text-muted);font-size:.85rem">(high)</span>', a: ['highest'] },
+          { q: 'This road is ___ than that one. <span style="color:var(--text-muted);font-size:.85rem">(dangerous)</span>', a: ['more dangerous'] },
+          { q: 'The soup is ___ hot to eat now. <span style="color:var(--text-muted);font-size:.85rem">(เกินไป)</span>', a: ['too'] },
+          { q: 'She doesn\'t have ___ time to finish. <span style="color:var(--text-muted);font-size:.85rem">(พอ)</span>', a: ['enough'] },
+          { q: 'Tom runs ___ than his brother. <span style="color:var(--text-muted);font-size:.85rem">(fast)</span>', a: ['faster'] },
+          { q: 'This is the ___ movie I have ever seen. <span style="color:var(--text-muted);font-size:.85rem">(bad)</span>', a: ['worst'] },
+        ],
+        answers: [
+          'hotter — hot: สั้น 1 พยางค์ + er',
+          'smartest — smart: สั้น &#8594; the + est',
+          'too — too + adj + to V = มากเกินไป',
+          'enough — adj + enough + to V = พอที่จะ',
+          'highest — high: the + est (ลง t)',
+          'more dangerous — ยาว 3+ พยางค์ ใช้ more',
+          'too — too hot to eat',
+          'enough — enough + noun = เพียงพอ',
+          'faster — fast: สั้น + er',
+          'worst — bad &#8594; worse &#8594; worst (irregular)',
+        ]
+      },
+      {
+        type: 'struct',
+        title: 'ถามโครงสร้าง — เขียนคำตอบในช่องว่าง',
+        questions: [
+          'Comparative ของคำยาว (3+ พยางค์) สร้างอย่างไร? ยกตัวอย่าง',
+          '"too" กับ "enough" ต่างกันอย่างไร? เขียนโครงสร้าง',
+          'Superlative ของ good / bad / far คืออะไร?',
+        ],
+        answers: [
+          'more + adj: more beautiful, more expensive, more interesting',
+          'too = เกินไป (too + adj + to V) | enough = พอดี (adj/adv + enough + to V / enough + noun)',
+          'good&#8594;best | bad&#8594;worst | far&#8594;farthest/furthest',
+        ]
+      },
+      {
+        type: 'mc',
+        title: 'แบบเลือกตอบ',
+        questions: [
+          { q: 'She is ___ than her sister. (tall)', opts: ['more tall','taller'], a: 1 },
+          { q: 'This is ___ book in the library. (interesting)', opts: ['the most interesting','the interestingest'], a: 0 },
+          { q: 'The coffee is ___ hot to drink.', opts: ['too','enough'], a: 0 },
+          { q: 'Is she old ___ to vote?', opts: ['too','enough'], a: 1 },
+          { q: 'He runs ___ of all the students.', opts: ['faster','the fastest'], a: 1 },
+          { q: 'This car is ___ expensive than that one.', opts: ['more','most'], a: 0 },
+          { q: 'I\'m ___ tired to go out.', opts: ['too','enough'], a: 0 },
+          { q: 'This is the ___ day of my life. (good)', opts: ['goodest','best'], a: 1 },
+          { q: 'She speaks English ___ than I do. (fluent)', opts: ['more fluently','fluentlier'], a: 0 },
+          { q: 'Do we have ___ chairs for everyone?', opts: ['too','enough'], a: 1 },
+        ]
+      }
+    ]
+  },
+  {
+    id: 't3',
+    title: 'Present Simple vs Continuous',
+    subtitle: 'Past Simple',
+    parts: [
+      {
+        type: 'fill',
+        title: 'เติมคำในช่องว่าง — Present Simple / Continuous / Past Simple',
+        questions: [
+          { q: 'She ___ (study) English every day.', a: ['studies'] },
+          { q: 'Look! He ___ (run) in the park.', a: ['is running'] },
+          { q: 'They ___ (visit) the museum yesterday.', a: ['visited'] },
+          { q: 'I ___ (not/like) spicy food.', a: ["don't like","do not like"] },
+          { q: 'She ___ (cook) dinner right now.', a: ['is cooking'] },
+          { q: 'We ___ (go) to the beach last summer.', a: ['went'] },
+          { q: 'The sun ___ (rise) in the east. <span style="color:var(--text-muted);font-size:.85rem">(ความจริงสากล)</span>', a: ['rises'] },
+          { q: 'He ___ (not/come) to school yesterday.', a: ["didn't come","did not come"] },
+          { q: 'What ___ you ___ (do) at 8 p.m. last night?', a: ['were...doing','were you doing'] },
+          { q: 'My cat ___ (sleep) on the sofa every afternoon.', a: ['sleeps'] },
+        ],
+        answers: [
+          'studies — He/She/It + V+s (every day = นิสัย)',
+          'is running — is/am/are + V-ing (ขณะนี้)',
+          'visited — Past Simple: เหตุการณ์ที่สิ้นสุด + yesterday',
+          "don't like — I + don't + V (ปฏิเสธ Present Simple)",
+          'is cooking — กำลังทำอยู่ขณะนี้',
+          'went — go (irregular) &#8594; went',
+          'rises — ความจริงสากล ใช้ Present Simple',
+          "didn't come — ปฏิเสธ Past Simple: didn't + V1",
+          'were you doing — Past Continuous: ขณะที่เวลาผ่านมา',
+          'sleeps — every afternoon = นิสัย/ประจำ',
+        ]
+      },
+      {
+        type: 'struct',
+        title: 'ถามโครงสร้าง — เขียนคำตอบในช่องว่าง',
+        questions: [
+          'Present Simple ใช้เมื่อไหร่? บอก 3 กรณี',
+          'Present Continuous สร้างอย่างไร? และใช้เมื่อไหร่?',
+          'Past Simple ของ go / eat / buy / have คืออะไร?',
+        ],
+        answers: [
+          '&#9312; นิสัย/ประจำ (always, every day) &#9313; ความจริงสากล &#9314; ตารางเวลาที่กำหนดไว้',
+          'S + am/is/are + V-ing — ใช้กับเหตุการณ์ที่กำลังเกิดขึ้นตอนนี้ หรือช่วงนี้ (now, at the moment)',
+          'go&#8594;went | eat&#8594;ate | buy&#8594;bought | have&#8594;had',
+        ]
+      },
+      {
+        type: 'mc',
+        title: 'แบบเลือกตอบ',
+        questions: [
+          { q: 'Water ___ at 100&deg;C.', opts: ['boils','is boiling'], a: 0 },
+          { q: 'Shh! The baby ___.', opts: ['sleeps','is sleeping'], a: 1 },
+          { q: 'I ___ a great movie last night.', opts: ['watch','watched','was watching'], a: 1 },
+          { q: 'She ___ to the market every Saturday.', opts: ['goes','is going'], a: 0 },
+          { q: 'They ___ football when it rained.', opts: ['play','were playing','played'], a: 1 },
+          { q: 'He ___ his keys yesterday.', opts: ['loses','lost'], a: 1 },
+          { q: 'I ___ my homework right now.', opts: ['do','am doing'], a: 1 },
+          { q: '___ she speak French? (ปัจจุบัน)', opts: ['Does','Is'], a: 0 },
+          { q: 'We ___ pizza for lunch yesterday.', opts: ['have','had','are having'], a: 1 },
+          { q: 'My parents ___ (not work) on Sundays.', opts: ["don't work","aren't working"], a: 0 },
+        ]
+      }
+    ]
+  },
+  {
+    id: 't4',
+    title: 'Wh-questions',
+    subtitle: 'Present Perfect vs Past Simple',
+    parts: [
+      {
+        type: 'fill',
+        title: 'เติมคำในช่องว่าง — Wh-questions + Present Perfect vs Past Simple',
+        questions: [
+          { q: '___ did you go on holiday? — To Paris.', a: ['where','Where'] },
+          { q: '___ does the film start? — At 7 p.m.', a: ['when','When'] },
+          { q: 'I ___ (already/finish) my homework.', a: ['have already finished'] },
+          { q: 'She ___ (visit) France three times.', a: ['has visited'] },
+          { q: '___ are you late? — Because I missed the bus.', a: ['why','Why'] },
+          { q: 'We ___ (just/eat) lunch.', a: ['have just eaten'] },
+          { q: 'He ___ (see) that movie last week.', a: ['saw'] },
+          { q: '___ long have you lived here?', a: ['how','How'] },
+          { q: '___ is your favorite color?', a: ['what','What'] },
+          { q: 'I ___ (never/be) to Japan.', a: ['have never been'] },
+        ],
+        answers: [
+          'Where — ถามสถานที่',
+          'When — ถามเวลา',
+          'have already finished — Present Perfect + already (บอกเล่า)',
+          'has visited — She/He/It &#8594; has + V3',
+          'Why — ถามเหตุผล',
+          'have just eaten — just = เพิ่งเกิดขึ้น',
+          'saw — last week = เวลาชัดเจน &#8594; Past Simple',
+          'How — How long = ถามระยะเวลา',
+          'What — ถามสิ่งของ/ข้อมูล',
+          'have never been — ประสบการณ์ที่ไม่เคยเกิด',
+        ]
+      },
+      {
+        type: 'struct',
+        title: 'ถามโครงสร้าง — เขียนคำตอบในช่องว่าง',
+        questions: [
+          'Present Perfect สร้างอย่างไร? และต่างจาก Past Simple อย่างไร?',
+          'Wh-question สร้างอย่างไร? เขียนโครงสร้าง',
+          'already / yet / just / ever / never ใช้กับ tense ใด? ยกตัวอย่าง',
+        ],
+        answers: [
+          'S + have/has + V3 — Present Perfect: ประสบการณ์/ผลที่ยังเกี่ยวข้อง | Past Simple: เหตุการณ์ที่สิ้นสุด มีเวลาชัดเจน',
+          'Wh-word + auxiliary + S + V? เช่น What did you eat? / Where does she live?',
+          'Present Perfect ทั้งหมด: already (บอกเล่า), yet (คำถาม/ปฏิเสธ), just (เพิ่งเกิด), ever/never (ประสบการณ์)',
+        ]
+      },
+      {
+        type: 'mc',
+        title: 'แบบเลือกตอบ',
+        questions: [
+          { q: '___ did you buy? — A new shirt.', opts: ['Where','What','Who'], a: 1 },
+          { q: '___ does she live? — In Bangkok.', opts: ['Where','When'], a: 0 },
+          { q: 'I ___ this movie before. (เคย)', opts: ['saw','have seen'], a: 1 },
+          { q: 'She ___ in 2019. (เวลาชัดเจน)', opts: ['has graduated','graduated'], a: 1 },
+          { q: 'Have you finished ___ ?', opts: ['already','yet'], a: 1 },
+          { q: '___ many languages does he speak?', opts: ['How','What'], a: 0 },
+          { q: 'They ___ never eaten sushi.', opts: ['have','has'], a: 0 },
+          { q: '___ is this bag? — It\'s Tom\'s.', opts: ['Whose','Who','Which'], a: 0 },
+          { q: 'I ___ just arrived home.', opts: ['have','had'], a: 0 },
+          { q: '___ did the match end? — 2-1.', opts: ['How','What'], a: 0 },
+        ]
+      }
+    ]
+  },
+  {
+    id: 't5',
+    title: 'Modals',
+    subtitle: 'Be going to &middot; Will / Won\'t',
+    parts: [
+      {
+        type: 'fill',
+        title: 'เติมคำในช่องว่าง — Modals / Be going to / Will / Won\'t',
+        questions: [
+          { q: 'You ___ eat junk food every day. <span style="color:var(--text-muted);font-size:.85rem">(ไม่ควร)</span>', a: ["shouldn't","should not"] },
+          { q: 'I ___ call you later. <span style="color:var(--text-muted);font-size:.85rem">(สัญญา)</span>', a: ['will'] },
+          { q: 'She ___ travel to Japan next month. <span style="color:var(--text-muted);font-size:.85rem">(แผนที่วางไว้)</span>', a: ['is going to'] },
+          { q: 'He ___ be sick — he looks pale. <span style="color:var(--text-muted);font-size:.85rem">(ความเป็นไปได้)</span>', a: ['might','may'] },
+          { q: 'Students ___ wear a uniform at school. <span style="color:var(--text-muted);font-size:.85rem">(บังคับ)</span>', a: ['must','have to'] },
+          { q: 'It ___ rain tomorrow. <span style="color:var(--text-muted);font-size:.85rem">(พยากรณ์ไม่แน่ใจ)</span>', a: ['might','may'] },
+          { q: 'You ___ smoke inside. <span style="color:var(--text-muted);font-size:.85rem">(ห้าม)</span>', a: ["mustn't","must not"] },
+          { q: 'I ___ study medicine. <span style="color:var(--text-muted);font-size:.85rem">(ตัดสินใจแล้ว)</span>', a: ['am going to'] },
+          { q: '___ you help me move this table? <span style="color:var(--text-muted);font-size:.85rem">(ขอร้องสุภาพ)</span>', a: ['could','Could','would','Would'] },
+          { q: 'She ___ come to the party. <span style="color:var(--text-muted);font-size:.85rem">(ปฏิเสธอนาคต)</span>', a: ["won't","will not"] },
+        ],
+        answers: [
+          "shouldn't — ไม่ควร = should not",
+          'will — สัญญา/ตัดสินใจทันที',
+          'is going to — แผนที่วางไว้ล่วงหน้า',
+          'might/may — ความเป็นไปได้ประมาณ 50%',
+          'must / have to — บังคับ ต้องทำ',
+          'might/may — อาจจะ (ไม่แน่ใจ)',
+          "mustn't — ห้ามทำ",
+          'am going to — ตัดสินใจแล้ว (be going to)',
+          'Could/Would — ขอร้องสุภาพ',
+          "won't — will not (ปฏิเสธอนาคต)",
+        ]
+      },
+      {
+        type: 'struct',
+        title: 'ถามโครงสร้าง — เขียนคำตอบในช่องว่าง',
+        questions: [
+          'will กับ be going to ต่างกันอย่างไร? ยกตัวอย่าง',
+          'must กับ have to ต่างกันอย่างไร?',
+          'should / might / must / can\'t ใช้แสดงความน่าจะเป็นต่างกันอย่างไร?',
+        ],
+        answers: [
+          'will = ตัดสินใจทันที/สัญญา (I\'ll help you.) | be going to = มีแผนแล้ว หรือมีสัญญาณชัดเจน (Look at those clouds — it\'s going to rain.)',
+          'must = กฎเกณฑ์จากผู้พูด/ความรู้สึก | have to = กฎภายนอก/ระเบียบ',
+          'must = แน่ใจมาก | should = น่าจะ | might/may = อาจจะ (~50%) | can\'t = เป็นไปไม่ได้',
+        ]
+      },
+      {
+        type: 'mc',
+        title: 'แบบเลือกตอบ',
+        questions: [
+          { q: 'You ___ drive fast on this road. (ห้าม)', opts: ["mustn't","don't have to"], a: 0 },
+          { q: 'I ___ pick you up. The weather looks bad. (ตัดสินใจทันที)', opts: ['am going to','will'], a: 1 },
+          { q: 'She ___ be the new manager. (คาดเดา)', opts: ['might','must not'], a: 0 },
+          { q: 'We ___ take off shoes in the temple.', opts: ["don't have to","shouldn't","must"], a: 2 },
+          { q: 'They ___ going to have a picnic tomorrow.', opts: ['are','will'], a: 0 },
+          { q: '___ I open the window? (ขออนุญาต)', opts: ['Will','Shall','Would'], a: 1 },
+          { q: 'He ___ be 40. He looks much younger!', opts: ["can't","mustn't"], a: 0 },
+          { q: 'You ___ take an umbrella. (แนะนำ)', opts: ['should','must'], a: 0 },
+          { q: 'She ___ study hard if she wants to pass.', opts: ['would','should','might'], a: 1 },
+          { q: 'Look at those clouds. It ___ rain.', opts: ['is going to','will'], a: 0 },
+        ]
+      }
+    ]
+  }
+];
+
+/* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+   STATE
+&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+const state = {};
+topics.forEach(t => {
+  state[t.id] = { fill: 0, mc: 0, done: false };
+});
+
+/* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+   BUILD UI
+&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+function buildNav() {
+  const nav = document.getElementById('navTabs');
+  const chips = document.getElementById('scoreChips');
+  topics.forEach((t, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-tab' + (i === 0 ? ' active' : '');
+    btn.id = 'tab_' + t.id;
+    btn.textContent = (i+1) + '. ' + t.title;
+    btn.onclick = () => switchTab(t.id);
+    nav.appendChild(btn);
+
+    const chip = document.createElement('div');
+    chip.className = 'chip';
+    chip.id = 'chip_' + t.id;
+    chip.innerHTML = `<span class="dot"></span>${t.title}`;
+    chips.appendChild(chip);
+  });
+}
+
+function buildSections() {
+  const main = document.getElementById('mainContent');
+  topics.forEach((t, ti) => {
+    const sec = document.createElement('div');
+    sec.className = 'section' + (ti === 0 ? ' active' : '');
+    sec.id = 'sec_' + t.id;
+
+    let html = `<div class="progress-wrap">
+      <div class="progress-label" id="prog_label_${t.id}">ยังไม่ได้ทำ</div>
+      <div class="progress-bar"><div class="progress-fill" id="prog_${t.id}"></div></div>
+    </div>`;
+
+    t.parts.forEach((part, pi) => {
+      const pid = `${t.id}_p${pi}`;
+      html += buildPart(part, pid, t.id);
+    });
+
+    sec.innerHTML = html;
+    main.appendChild(sec);
+  });
+}
+
+function buildPart(part, pid, tid) {
+  const labels = ['ส่วนที่ 1','ส่วนที่ 2','ส่วนที่ 3'];
+  const pNum = pid.split('_p')[1];
+  let html = `<div class="ex-card">
+    <div class="ex-card-head">
+      <span class="part-badge">${labels[pNum]}</span>
+      <h3>${part.title}</h3>
+    </div>
+    <div class="ex-card-body">`;
+
+  if (part.type === 'fill') {
+    part.questions.forEach((q, qi) => {
+      html += `<div class="fill-q">
+        <span class="q-num">${qi+1}.</span>
+        ${formatFill(q.q, pid, qi)}
+      </div>`;
+    });
+    html += `<div class="btn-row">
+      <button class="btn-check" onclick="checkFill('${pid}','${tid}')">ตรวจคำตอบ</button>
+      <button class="btn-answer" onclick="toggleAns('ans_${pid}')">ดูเฉลย</button>
+    </div>`;
+    html += `<div class="score-result" id="score_${pid}"></div>`;
+    html += buildAnswerKey(part.answers, pid);
+
+  } else if (part.type === 'struct') {
+    part.questions.forEach((q, qi) => {
+      html += `<div class="struct-q">
+        <p><span class="q-num">${qi+1}.</span>${q}</p>
+        <textarea class="write-area" placeholder="เขียนคำตอบที่นี่..."></textarea>
+      </div>`;
+    });
+    html += `<div class="btn-row">
+      <button class="btn-answer" onclick="toggleAns('ans_${pid}')">ดูเฉลย</button>
+    </div>`;
+    html += buildAnswerKey(part.answers, pid);
+
+  } else if (part.type === 'mc') {
+    part.questions.forEach((q, qi) => {
+      html += `<div class="mc-q" id="mcq_${pid}_${qi}">
+        <p class="q-text"><span class="q-num">${qi+1}.</span>${q.q}</p>
+        <div class="choices">`;
+      q.opts.forEach((opt, oi) => {
+        html += `<label class="choice-label" id="cl_${pid}_${qi}_${oi}">
+          <input type="radio" name="mc_${pid}_${qi}" value="${oi}"> ${opt}
+        </label>`;
+      });
+      html += `</div></div>`;
+    });
+    html += `<div class="btn-row">
+      <button class="btn-check" onclick="checkMC('${pid}','${tid}')">ตรวจคำตอบ</button>
+      <button class="btn-answer" onclick="toggleAns('ans_${pid}')">ดูเฉลย</button>
+    </div>`;
+    html += `<div class="score-result" id="score_${pid}"></div>`;
+    html += buildMCAnswerKey(part, pid);
+  }
+
+  html += `</div></div>`;
+  return html;
+}
+
+function formatFill(q, pid, qi) {
+  let idx = 0;
+  return q.replace(/___/g, () => {
+    const id = `fill_${pid}_${qi}_${idx++}`;
+    return `<input type="text" class="fill-input" id="${id}" placeholder="...">`;
+  });
+}
+
+function buildAnswerKey(answers, pid) {
+  let html = `<div class="answer-key" id="ans_${pid}"><h4>&#128273; เฉลย</h4>`;
+  answers.forEach((a, i) => {
+    html += `<div class="ans-item"><b>${i+1}.</b> ${a}</div>`;
+  });
+  return html + '</div>';
+}
+
+function buildMCAnswerKey(part, pid) {
+  let html = `<div class="answer-key" id="ans_${pid}"><h4>&#128273; เฉลย</h4>`;
+  part.questions.forEach((q, i) => {
+    html += `<div class="ans-item"><b>${i+1}.</b> ${q.opts[q.a]}</div>`;
+  });
+  return html + '</div>';
+}
+
+/* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+   INTERACTIONS
+&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+function switchTab(tid) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec_' + tid).classList.add('active');
+  document.getElementById('tab_' + tid).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAns(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('show');
+}
+
+function checkFill(pid, tid) {
+  const topicIdx = topics.findIndex(t => t.id === tid);
+  const partIdx = parseInt(pid.split('_p')[1]);
+  const part = topics[topicIdx].parts[partIdx];
+  let correct = 0, total = 0;
+
+  part.questions.forEach((q, qi) => {
+    let idx = 0;
+    const inp = document.getElementById(`fill_${pid}_${qi}_${idx}`);
+    if (!inp) return;
+    const val = inp.value.trim().toLowerCase();
+    const accepted = q.a.map(a => a.toLowerCase());
+    total++;
+    if (accepted.includes(val)) {
+      inp.classList.add('correct'); inp.classList.remove('wrong'); correct++;
+    } else {
+      inp.classList.add('wrong'); inp.classList.remove('correct');
+    }
+  });
+
+  showScore(`score_${pid}`, correct, total);
+  state[tid].fill = correct;
+  updateProgress(tid);
+}
+
+function checkMC(pid, tid) {
+  const topicIdx = topics.findIndex(t => t.id === tid);
+  const partIdx = parseInt(pid.split('_p')[1]);
+  const part = topics[topicIdx].parts[partIdx];
+  let correct = 0, total = part.questions.length;
+
+  part.questions.forEach((q, qi) => {
+    const selected = document.querySelector(`input[name="mc_${pid}_${qi}"]:checked`);
+    q.opts.forEach((opt, oi) => {
+      const lbl = document.getElementById(`cl_${pid}_${qi}_${oi}`);
+      lbl.classList.remove('correct-choice','wrong-choice');
+    });
+    if (!selected) return;
+    const val = parseInt(selected.value);
+    const correctLbl = document.getElementById(`cl_${pid}_${qi}_${q.a}`);
+    if (val === q.a) {
+      correctLbl.classList.add('correct-choice'); correct++;
+    } else {
+      document.getElementById(`cl_${pid}_${qi}_${val}`).classList.add('wrong-choice');
+      correctLbl.classList.add('correct-choice');
+    }
+  });
+
+  showScore(`score_${pid}`, correct, total);
+  state[tid].mc = correct;
+  updateProgress(tid);
+}
+
+function showScore(id, correct, total) {
+  const el = document.getElementById(id);
+  const pct = correct / total;
+  el.classList.remove('great','good','try');
+  if (pct >= 0.8) el.classList.add('great');
+  else if (pct >= 0.5) el.classList.add('good');
+  else el.classList.add('try');
+  const emoji = pct >= 0.8 ? 'Excellent!' : pct >= 0.5 ? 'Good!' : 'Try again!';
+  el.textContent = `${emoji} ได้ ${correct} จาก ${total} คะแนน`;
+  el.classList.add('show');
+}
+
+function updateProgress(tid) {
+  const t = topics.find(t => t.id === tid);
+  const fillPart = t.parts.find(p => p.type === 'fill');
+  const mcPart = t.parts.find(p => p.type === 'mc');
+  const maxFill = fillPart ? fillPart.questions.length : 0;
+  const maxMC = mcPart ? mcPart.questions.length : 0;
+  const total = maxFill + maxMC;
+  const score = state[tid].fill + state[tid].mc;
+  const pct = total > 0 ? (score / total) * 100 : 0;
+
+  document.getElementById('prog_' + tid).style.width = pct + '%';
+  document.getElementById('prog_label_' + tid).textContent =
+    `คะแนนรวม: ${score}/${total} (${Math.round(pct)}%)`;
+
+  if (score > 0) {
+    state[tid].done = true;
+    document.getElementById('chip_' + tid).classList.add('done');
+    document.getElementById('tab_' + tid).classList.add('completed');
+  }
+  updateTotal();
+}
+
+function updateTotal() {
+  let total = 0;
+  topics.forEach(t => { total += state[t.id].fill + state[t.id].mc; });
+  document.getElementById('totalScore').textContent = `รวม: ${total} คะแนน`;
+}
+
+function resetAll() {
+  if (!confirm('ต้องการเริ่มใหม่ทั้งหมดหรือไม่?')) return;
+  location.reload();
+}
+
+/* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+   INIT
+&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+buildNav();
+buildSections();
+</script>
+<div id="bottomnav"></div>
+<script src="nav.js"></script>
+</body>
+</html>
+
+
+
+
