@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <link rel="stylesheet" href="style.css">
@@ -12,13 +12,13 @@ const pages = [
   {file:"2402ContainersQuantifiers.html", title:"Containers & quantifiers"},
   {file:"2403Thereisare.html", title:"There is/There are"},
   {file:"2601FewAfew.html", title:"Few / A few"},
-  {file:"2602ThisThese.htmll", title:"This / These"},
+  {file:"2602ThisThese.html", title:"This / These"},
 ];
 
 const current = location.pathname.split("/").pop();
 let index = pages.findIndex(p => p.file === current);
 
-let home = '<a href="index.htmll">Home</a>';
+let home = '<a href="index.html">Home</a>';
 let currentTitle = pages[index]?.title || "";
 let next = pages[index+1];
 
@@ -41,7 +41,7 @@ document.write(`
 <p align="center">
 <tr>
   <td colspan="3" style="text-align:center; background:#FFFFCC;">
-    <a href="index.htmll">Home</a> |
+    <a href="index.html">Home</a> |
     <b>Countable/Uncountable nouns</b> |
     <a href="2402ContainersQuantifiers.html">Next: Containers & quantifiers</a>
   </td>
@@ -96,9 +96,9 @@ document.write(`
 
   <nav>
     <a href="module_1_nouns__basic_structures.html">Module 1: Nouns & Quantifiers</a>
-    <a href="module2.htmll">Module 2: Comparatives & Tenses</a>
-    <a href="module3.htmll">Module 3: Past & Perfect</a>
-    <a href="module4.htmll">Module 4: Modals & Future</a>
+    <a href="module2.html">Module 2: Comparatives & Tenses</a>
+    <a href="module3.html">Module 3: Past & Perfect</a>
+    <a href="module4.html">Module 4: Modals & Future</a>
   </nav>
 
   <tr>
@@ -108,13 +108,13 @@ document.write(`
     
     <a href="2403Thereisare.html">There is/There are</a> |
     <a href="2601FewAfew.html">Few / A few</a> |
-    <a href="2602ThisThese.htmll">This / These</a> |
+    <a href="2602ThisThese.html">This / These</a> |
     <a href="26003cancouldmay.html">Can / Could / May</a> |
     <a href="2701prepositions_of_place_english.html">Prepositions</a> |
     <a href="2702imperative.html">Imperative</a> |
-    <a href="2901TooEnough.htmll">Too / Enough</a> |
-    <a href="2902OrderAdjectives.htmll">Order of adjectives</a> |
-    <a href="3001ComparativeForms.htmll">Comparative</a> |
+    <a href="2901TooEnough.html">Too / Enough</a> |
+    <a href="2902OrderAdjectives.html">Order of adjectives</a> |
+    <a href="3001ComparativeForms.html">Comparative</a> |
     <a href="3002Linkers.html">Linkers</a>
     
   </td>
