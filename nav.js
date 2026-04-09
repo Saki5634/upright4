@@ -2,21 +2,22 @@
 
 // Define all pages
 const pages = [
-  {file:"index.html", title:"Home"},
-  {file:"2401CountableUncountable.html", title:"Unit 2401: Countable / Uncountable"},
-  {file:"2402ContainersQuantifiers.html", title:"Unit 2402: Containers"},
-  {file:"2403Thereisare.html", title:"Unit 2403: There is / There are"},
-  {file:"2601FewAfew.html", title:"Unit 2601: Few / A few"},
-  {file:"2602ThisThese.html", title:"Unit 2602: This / These"},
-  {file:"26003cancouldmay.html", title:"Unit 26003: Can / Could / May"},
-  {file:"2701prepositions_of_place_english.html", title:"Unit 2701: Prepositions"},
-  {file:"2702imperative.html", title:"Unit 2702: Imperative"},
-  {file:"2901TooEnough.html", title:"Unit 2901: Too / Enough"},
-  {file:"2902OrderAdjectives.html", title:"Unit 2902: Order Adjectives"},
-  {file:"3001ComparativeForms.html", title:"Unit 3001: Comparative"},
-  {file:"3002Linkers.html", title:"Unit 3002: Linkers"},
-  {file:"1ex.html", title:"Exercise for Module 1"},
-  {file:"2ex.html", title:"Exercise for Module 2"}
+{file:"3002thesuperlative.html", title:"Unit 3002: The Superlative"},
+{file:"3003comparisons.html", title:"Unit 3003: Comparisons"},
+{file:"3301PastSimple.html", title:"Unit 3301: Past Simple"},
+{file:"3301present_simple_vs_present_contin.html", title:"Unit 3301: Present Simple vs Continuous"},
+{file:"3302waswere.html", title:"Unit 3302: Was / Were"},
+{file:"3303regularpast_simple.html", title:"Unit 3303: Regular Past Simple"},
+{file:"3401PastSimpleIr.html", title:"Unit 3401: Irregular Past Simple"},
+{file:"3801PastSimpleWh.html", title:"Unit 3801: Past Simple Wh-Questions"},
+{file:"3901PresentPerfect.html", title:"Unit 3901: Present Perfect"},
+{file:"4001PresentPerfectPastSimple.html", title:"Unit 4001: Present Perfect vs Past Simple"},
+{file:"4201Modals.html", title:"Unit 4201: Modals"},
+{file:"4501BegoingtoWilWont.html", title:"Unit 4501: Be going to / Will / Won’t"},
+{file:"4502WilWont.html", title:"Unit 4502: Will / Won’t"},
+{file:"GrandEx.html", title:"Grand Exercise"},
+{file:"module3.html", title:"Module 3"},
+{file:"module4.html", title:"Module 4"},
 ];
 
 // Detect current page
@@ -39,7 +40,7 @@ let topnav = `
 `;
 
 // 🔻 BOTTOM NAV (all except current + next)
-let bottomLinks = pages.filter((p, i) => i !== index && i !== index + 1);
+let bottomLinks = pages.filter((p, i) => i !== index);
 
 let bottomnav = `
 <div class="bottomnav">
