@@ -2,6 +2,7 @@
 
 // Define all pages
 const pages = [
+    {file:"index.html", title:"Home"},
   {"file":"1ex.html","title":"Exercise Module 1"},
   {"file":"2401CountableUncountable.html","title":"Countable/Uncountable nouns"},
   {"file":"2402ContainersQuantifiers.html","title":"Containers & quantifiers"},
